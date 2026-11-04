@@ -1,39 +1,77 @@
+import 'package:ejerciciosdecarmelo/navegar/product_data.dart';
 import 'package:flutter/material.dart';
 
-import 'image_list_screen.dart';
 
 class ImageDetailScreen extends StatelessWidget {
-  static const routeName = '/image_detail_screen';
+  final ImageData imageData;
 
-  const ImageDetailScreen({super.key});
+  const ImageDetailScreen({
+    required this.imageData,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final imageData = ModalRoute
-        .of(context)!
-        .settings
-        .arguments as ImageData;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(imageData.title),
+        title: const Text("Detalle del producto"),
+        backgroundColor: Colors.lightBlue,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network(
-              imageData.imageUrl,
-              width: 300,
-              height: 300,
-              fit: BoxFit.cover,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.network(
+                  imageData.imageUrl,
+                  width: 300,
+                  height: 300,
+                  fit: BoxFit.cover),
+
+              const SizedBox(height: 24),
+              Text(
+                imageData.title,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Container(
+                padding: const EdgeInsets.all(16),
+                color: Colors.blue[200],
+                child: SizedBox(
+                  child: Text(
+                    imageData.description,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+
+            ],
+
+            Container(
+              color: Colors.blue[200],
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.shopping_cart),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.favorite),
+
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 24),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('VOLVER'),
-            ),
-          ],
+          ),
         ),
       ),
     );

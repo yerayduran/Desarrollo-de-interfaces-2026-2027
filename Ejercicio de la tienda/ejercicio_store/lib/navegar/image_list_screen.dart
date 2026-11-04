@@ -1,46 +1,43 @@
+import 'package:ejerciciosdecarmelo/navegar/product_data.dart';
 import 'package:flutter/material.dart';
+
 import 'image_detail_screen.dart';
-import 'main.dart';
+
 
 class ImageListScreen extends StatelessWidget {
   const ImageListScreen({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
-    final List items = [
-      ImageData(
-        title: 'Imagen 1',
-        imageUrl: 'https://picsum.photos/250?image=9',
-      ),
-      ImageData(
-        title: 'Imagen 2',
-        imageUrl: 'https://picsum.photos/250?image=10',
-      ),
-      ImageData(
-        title: 'Imagen 3',
-        imageUrl: 'https://picsum.photos/250?image=11',
-      ),
-      ImageData(
-        title: 'Imagen 4',
-        imageUrl: 'https://picsum.photos/250?image=12',
-      ),
-      ImageData(
-        title: 'Imagen 5',
-        imageUrl: 'https://picsum.photos/250?image=13',
-      ),
-
-    ];
-
-
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Store')),
+      appBar: AppBar(
+        title: const Text('RestoApp'),
+        backgroundColor: Colors.lightBlue,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.shopping_cart),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.more_vert),
+          ),
+        ],
+      ),
       body: ListView.separated(
         itemCount: items.length,
         itemBuilder: (context, index) {
-          return ListTileImage(imageData: items[index]);
+          return ListTileImage(
+            imageData: items[index],
+          );
         },
-        separatorBuilder: (BuildContext context, int index) {
+        separatorBuilder: (context, index) {
           return const Divider();
         },
       ),
@@ -48,13 +45,23 @@ class ImageListScreen extends StatelessWidget {
   }
 }
 
-
-
-
 class ListTileImage extends StatelessWidget {
   final ImageData imageData;
 
-  const ListTileImage({required this.imageData, super.key});
+  const ListTileImage({
+    required this.imageData,
+    super.key,
+  });
+
+  void _openDetail(BuildContext context) {
+    Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (context) => ImageDetailScreen(
+          imageData: imageData,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,20 +73,11 @@ class ListTileImage extends StatelessWidget {
         fit: BoxFit.cover,
       ),
       title: Text(imageData.title),
+      subtitle: Text(imageData.description),
       trailing: IconButton(
-        onPressed: () => Navigator.pushNamed(
-          context,
-          ImageDetailScreen.routeName,
-          arguments: imageData,
-        ),
+        onPressed: () => _openDetail(context),
         icon: const Icon(Icons.chevron_right),
       ),
     );
   }
-}
-
-class ImageData {
-  late final String title;
-  late final String imageUrl;
-  ImageData({required this.title, required this.imageUrl});
 }
