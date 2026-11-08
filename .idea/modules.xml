@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Desarrollo-de-interfaces-2026-2027.iml" filepath="$PROJECT_DIR$/.idea/Desarrollo-de-interfaces-2026-2027.iml" />
+      <module fileurl="file://$PROJECT_DIR$/correccion.iml" filepath="$PROJECT_DIR$/correccion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/correccion_android.iml" filepath="$PROJECT_DIR$/android/correccion_android.iml" />
     </modules>
   </component>
 </project>
