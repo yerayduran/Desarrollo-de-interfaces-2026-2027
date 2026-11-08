@@ -1,4 +1,6 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import '../conditions/juego_conditions.dart';
 
 class JuegoScreenDetails extends StatefulWidget {
   const JuegoScreenDetails({super.key});
@@ -8,6 +10,29 @@ class JuegoScreenDetails extends StatefulWidget {
 }
 
 class _JuegoScreenDetailsState extends State<JuegoScreenDetails> {
+  final List opciones = [
+  {'nombre': 'rock', 'ruta': 'assets/images/rock.png'},
+  {'nombre': 'paper', 'ruta': 'assets/images/paper.png'},
+  {'nombre': 'scissors', 'ruta': 'assets/images/scissors.png'},
+  ];
+
+  int indiceJugador1 = 0;
+  int indiceJugador2 = 1;
+  String mensajeResultado = '';
+
+  void jugarPartida() {
+    final aleatorio = Random();
+    setState(() {
+      indiceJugador1 = aleatorio.nextInt(3);
+      indiceJugador2 = aleatorio.nextInt(3);
+
+      String nombreJ1 = opciones[indiceJugador1]['nombre']!;
+      String nombreJ2 = opciones[indiceJugador2]['nombre']!;
+
+      mensajeResultado = evaluarGanador(nombreJ1, nombreJ2);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,49 +54,45 @@ class _JuegoScreenDetailsState extends State<JuegoScreenDetails> {
                     const Text('Jugador 1',
                       style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
+
                     const SizedBox(height: 16),
+
                     Container(
-                      width: 100,
-                      height: 100,
-                      decoration: const BoxDecoration(
-                        color: Colors.green,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Image.asset('images/piedra.png'),
+                      width: 200,
+                      height: 200,
+                      child: Image.asset(opciones[indiceJugador1]['ruta']!,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ],
                 ),
+
                 Column(
                   children: [
                     const Text('Jugador 2',
                       style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
+
                     const SizedBox(height: 16),
+
                     Container(
-                      width: 100,
-                      height: 100,
-                      decoration: const BoxDecoration(
-                        color: Colors.yellow,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'Icon Paper',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.black),
-                        ),
+                      width: 200,
+                      height: 200,
+                      child: Image.asset(opciones[indiceJugador2]['ruta']!,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ],
                 ),
               ],
             ),
-            const Text(
-              'Player 2 win!!',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+
+            Text(
+              mensajeResultado,
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
+
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -79,10 +100,8 @@ class _JuegoScreenDetailsState extends State<JuegoScreenDetails> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red[400],
                 ),
-                onPressed: () {
-                },
-                child: const Text(
-                  'Go!!',
+                onPressed: jugarPartida,
+                child: const Text('Go!!',
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),

@@ -9,6 +9,9 @@
       <excludeFolder url="file://$MODULE_DIR$/Ejercicio de tablero tactico/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/Ejercicio de tablero tactico/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/Ejercicio de tablero tactico/build" />
+      <excludeFolder url="file://$MODULE_DIR$/piedra_papel_tijera/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/piedra_papel_tijera/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/piedra_papel_tijera/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
