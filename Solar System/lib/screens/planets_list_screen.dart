@@ -6,7 +6,15 @@ class PlanetsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          "Sistema solar",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.black45,
+      ),
+      backgroundColor: Colors.deepPurple[700],
       body: SafeArea(
         child: ListView(
           children: [
@@ -27,23 +35,37 @@ class PlanetsListScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPlanetTile(String name, String imagePath) {
-    return Padding(
-      padding: EdgeInsets.all(4),
-      child: ListTile(
-        leading: Image.asset(
-          imagePath,
-          width: 45,
-          height: 45,
-        ),
-        title: Text(
-          name,
-          style: const TextStyle(
-            fontSize: 16,
-            color: Colors.black,
+  Widget _buildPlanetTile(String nombre, String ruta) {
+    return Column(
+      children: [
+        Padding(
+          padding:EdgeInsets.all(4),
+          child: ListTile(
+            leading: Image.asset(
+              ruta,
+              width: 45,
+              height: 45,
+            ),
+            title: Text(
+              nombre,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white70,
+              size: 16,
+            ),
           ),
         ),
-      ),
+        const Divider(
+          color: Colors.white,
+          height: 1,
+          thickness: 1,
+        ),
+      ],
     );
   }
 }
