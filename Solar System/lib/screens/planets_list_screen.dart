@@ -38,7 +38,7 @@ class PlanetsListScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const PlanetDetailScreen(),
+                      builder: (context) => PlanetDetailScreen(planet: planet),
                     ),
                   );
                 },

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../model/planet_item.dart';
+
 class PlanetDetailScreen extends StatelessWidget {
-  const PlanetDetailScreen({super.key});
+  final Planet planet;
+
+  const PlanetDetailScreen({super.key, required this.planet});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class PlanetDetailScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/earth.png',
+                planet.imagePath,
                 width: 150,
                 height: 150,
               )
