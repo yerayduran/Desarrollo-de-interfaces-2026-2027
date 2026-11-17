@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_system/screens/planet_detail_screen.dart';
 
 import '../data/planet_data.dart';
 import '../model/planet_item.dart';
@@ -33,6 +34,14 @@ class PlanetsListScreen extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
               child: ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PlanetDetailScreen(),
+                    ),
+                  );
+                },
                 leading: Image.asset(
                   planet.imagePath,
                   width: 45,
