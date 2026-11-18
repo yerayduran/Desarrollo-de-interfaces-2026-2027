@@ -35,11 +35,10 @@ class PlanetsListScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
               child: ListTile(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => PlanetDetailScreen(planet: planet),
-                    ),
+                    PlanetDetailScreen.routeName,
+                    arguments: planet,
                   );
                 },
                 leading: Image.asset(

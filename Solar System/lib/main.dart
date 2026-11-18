@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:solar_system/screens/planet_detail_screen.dart';
 import 'package:solar_system/screens/planets_list_screen.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -8,10 +10,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sistema Solar',
-      home: PlanetsListScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const PlanetsListScreen(),
+        PlanetDetailScreen.routeName: (context) => const PlanetDetailScreen(),
+      },
     );
   }
 }

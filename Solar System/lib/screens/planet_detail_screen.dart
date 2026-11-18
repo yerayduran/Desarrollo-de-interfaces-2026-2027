@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '../model/planet_item.dart';
 
 class PlanetDetailScreen extends StatelessWidget {
-  final Planet planet;
-
-  const PlanetDetailScreen({super.key, required this.planet});
+  static const String routeName = '/detail';
+  const PlanetDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Planet planet = ModalRoute.of(context)!.settings.arguments as Planet;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
