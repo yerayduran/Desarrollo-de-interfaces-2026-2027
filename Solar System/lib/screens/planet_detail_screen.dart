@@ -4,11 +4,13 @@ import '../model/planet_item.dart';
 
 class PlanetDetailScreen extends StatelessWidget {
   static const String routeName = '/detail';
-  const PlanetDetailScreen({super.key});
+
+  final Planet planet;
+
+  const PlanetDetailScreen({super.key, required this.planet});
 
   @override
   Widget build(BuildContext context) {
-    final Planet planet = ModalRoute.of(context)!.settings.arguments as Planet;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +33,16 @@ class PlanetDetailScreen extends StatelessWidget {
                 planet.imagePath,
                 width: 150,
                 height: 150,
-              )
+              ),const SizedBox(height: 24),
+              Text(
+                planet.descripcion,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 16,
+                  height: 1.5,
+                  color: Colors.white,
+                ),
+              ),
             ],
           ),
         ),
